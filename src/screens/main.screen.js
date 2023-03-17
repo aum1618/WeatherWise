@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native'
+import { Text, View,} from 'react-native'
 import React from 'react'
 
 export default function MainScreen() {
   return (
     <View>
-      <Text>Main Screen</Text>
+      <Text>Hello</Text>
     </View>
   )
 }

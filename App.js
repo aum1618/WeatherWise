@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import { Text } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { Wrapper } from './src/infrastructure/components/wrappper/wrapper';
 import { theme } from './src/infrastructure/theme';
@@ -9,7 +10,7 @@ export default function App() {
     <ThemeProvider theme={theme} >
       <Wrapper>
       <MainScreen />
-      <StatusBar style="auto" />
+      <StatusBar style="inverted" />
       </Wrapper>
       </ThemeProvider>
   );
