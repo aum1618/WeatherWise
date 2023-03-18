@@ -1,12 +1,13 @@
 import styled from "styled-components/native";
 
 const defaultTextStyles = (theme) => `
-  font-family: ${theme.fonts.body};
-  font-weight: ${theme.fontWeights.regular};
   color: ${theme.colors.text.primary};
   flex-wrap: wrap;
   margin-top: 0px;
   margin-bottom: 0px;
+`;
+const massive = (theme) => `
+    font-size: ${theme.fontSizes.h1}
 `;
 
 const title = (theme) => `
@@ -35,7 +36,6 @@ const caption = (theme) => `
 `;
 
 const label = (theme) => `
-    font-family: ${theme.fonts.heading};
     font-size: ${theme.fontSizes.body};
     font-weight: ${theme.fontWeights.medium};
 `;
@@ -48,6 +48,7 @@ const variants = {
   hint,
   title,
   name,
+  massive
 };
 
 export const Text = styled.Text`
