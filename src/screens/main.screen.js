@@ -15,8 +15,9 @@ import HourlyTempCard from "./mainScreenComponets/HourlyTempCard";
 import moment from "moment/moment";
 import ForecastCard from "./mainScreenComponets/ForecastCard";
 import { Button } from "react-native-paper";
+import DetailsGrid from "./mainScreenComponets/DetailsGrid/DetailsGrid";
 
-export default function MainScreen() {
+export default function MainScreen({navigation,name}) {
   const { forecastData, isLoading } = useContext(WeatherContext);
   const [expanded, setExpanded] = useState(false);
 
@@ -25,13 +26,13 @@ export default function MainScreen() {
   const toggleExpanded = () => {
     if (expanded) {
       Animated.timing(scrollHeight, {
-        toValue: 150,
+        toValue: 200,
         duration: 300,
         useNativeDriver: false,
       }).start(() => setExpanded(false));
     } else {
       Animated.timing(scrollHeight, {
-        toValue: 300, // set to the desired expanded height
+        toValue: 400, // set to the desired expanded height
         duration: 300,
         useNativeDriver: false,
       }).start(() => setExpanded(true));
@@ -42,7 +43,7 @@ export default function MainScreen() {
     <Wrapper>
       {!isLoading && forecastData.timezone ? (
         <ScrollView>
-          <Header />
+          <Header navigation={navigation} name={name} />
           <TempCard
             temp_c={forecastData.daily.temperature_2m_max[0]}
             feelsLike={forecastData.daily.apparent_temperature_max[0]}
@@ -64,15 +65,28 @@ export default function MainScreen() {
               marginHorizontal: 20,
             }}
           >
-           {forecastData.daily.time.map((time,i)=>{
-            return(
-              <ForecastCard date={moment(time).format("DD/MM")} maxTemp={forecastData.daily.temperature_2m_max[i]} minTemp={forecastData.daily.temperature_2m_min[i]} key={i} />
-            )
-           })}
+            {forecastData.daily.time.map((time, i) => {
+              return (
+                <ForecastCard
+                  date={moment(time).format("DD/MM")}
+                  maxTemp={forecastData.daily.temperature_2m_max[i]}
+                  minTemp={forecastData.daily.temperature_2m_min[i]}
+                  key={i}
+                />
+              );
+            })}
           </Animated.ScrollView>
           <Button onPress={toggleExpanded}>
             <Text>{expanded ? "Show Less" : "Show More"}</Text>
           </Button>
+          <DetailsGrid
+            feelsLike={forecastData.daily.apparent_temperature_max[0]}
+            precipitation={forecastData.hourly.precipitation_probability[0]}
+            uv={forecastData.daily.uv_index_max[0]}
+            humidity={forecastData.hourly.relativehumidity_2m[0]}
+            pressure={forecastData.hourly.surface_pressure[0]}
+            visibility={forecastData.hourly.visibility[0]}
+          />
         </ScrollView>
       ) : (
         <ActivityIndicator

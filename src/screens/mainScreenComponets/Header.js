@@ -17,13 +17,13 @@ const TextView=styled(View)`
 flex: 1;
 `
 
-export default function Header({name}) {
+export default function Header({navigation,name="Rawalpindi"}) {
   return (
     <HeaderView>
       <TextView>
-      <Text variant="name">Rawalpindi</Text>
+      <Text variant="name">{name}</Text>
       </TextView>
-      <IconButton icon="adjust" iconColor='white' size={30} />
+      <IconButton icon="adjust" iconColor='white' size={30} onPress={()=>{navigation.navigate("Search");console.log("navigated successfully")}} />
       <IconButton icon="dots-vertical" iconColor='white' size={30} />
     </HeaderView>
   )

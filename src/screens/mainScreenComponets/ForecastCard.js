@@ -5,7 +5,7 @@ import { Spacer } from '../../infrastructure/components/spacer/spacer'
 
 export default function ForecastCard({date,minTemp,maxTemp}) {
   return (
-    <View style={{flexDirection:'row',height:50,alignItems:'center'}} >
+    <View style={{flexDirection:'row',height:45,alignItems:'center'}} >
       <Text style={{flex:1}} >{date}</Text>
       <Text>{Math.round(minTemp)}</Text>
       <Spacer position="left" size="large" />
