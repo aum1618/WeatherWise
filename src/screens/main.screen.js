@@ -16,12 +16,17 @@ import moment from "moment/moment";
 import ForecastCard from "./mainScreenComponets/ForecastCard";
 import { Button } from "react-native-paper";
 import DetailsGrid from "./mainScreenComponets/DetailsGrid/DetailsGrid";
+import { GeocodingContext } from "../services/geocodingAPI/geocodingContext";
 
-export default function MainScreen({navigation,name}) {
+export default function MainScreen({navigation,route}) {
+  const {cityName,cityData}=useContext(GeocodingContext)
   const { forecastData, isLoading } = useContext(WeatherContext);
   const [expanded, setExpanded] = useState(false);
+  
+  const name = route.params?.name; // use optional chaining to safely access route.params.name
+  const headerName = name ? name : cityName; // set headerName to name if it exists, otherwise to cityName
 
-  const scrollHeight = useRef(new Animated.Value(0)).current;
+  const scrollHeight = useRef(new Animated.Value(200)).current;
 
   const toggleExpanded = () => {
     if (expanded) {
@@ -43,7 +48,7 @@ export default function MainScreen({navigation,name}) {
     <Wrapper>
       {!isLoading && forecastData.timezone ? (
         <ScrollView>
-          <Header navigation={navigation} name={name} />
+          <Header name={headerName} navigation={navigation} />
           <TempCard
             temp_c={forecastData.daily.temperature_2m_max[0]}
             feelsLike={forecastData.daily.apparent_temperature_max[0]}

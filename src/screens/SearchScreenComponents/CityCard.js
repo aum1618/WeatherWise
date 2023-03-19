@@ -2,14 +2,16 @@ import React, { useContext } from 'react'
 import { Card } from 'react-native-paper'
 import { Spacer } from '../../infrastructure/components/spacer/spacer'
 import { Text } from '../../infrastructure/components/typography/Text'
+import { GeocodingContext } from '../../services/geocodingAPI/geocodingContext'
 import { WeatherContext } from '../../services/weatherAPI/WeatherContext/WeatherContext'
 
 export default function CityCard({name,country,navigation,latitude,longitude}) {
   const{getData}=useContext(WeatherContext)
+  // const{setCityData}=useContext(GeocodingContext)
  
  const handlePress=()=>{
     getData(latitude,longitude)
-    navigation.navigate("Main",name)
+    navigation.navigate("Main",{name:name})
  }
  
   return (
