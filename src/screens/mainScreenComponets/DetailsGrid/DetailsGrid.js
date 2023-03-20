@@ -4,7 +4,7 @@ import DetailCard from "./DetailCard";
 
 export default function DetailsGrid({feelsLike,humidity,pressure,visibility,precipitation,uv}) {
   return (
-    <View style={{ margin: 10, padding: 10, backgroundColor: "yellow" }}>
+    <View style={{ margin: 10, padding: 10,}}>
       <View style={{ flexDirection: "row" }}>
         <DetailCard name="Feels Like" value={feelsLike} />
         <DetailCard name="humidity" value={humidity} />

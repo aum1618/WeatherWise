@@ -4,7 +4,7 @@ import { Text } from '../../infrastructure/components/typography/Text'
 
 export default function TempCard({temp_c,feelsLike}) {
   return (
-    <View style={{justifyContent:'center',alignItems:'center',height:380,backgroundColor:'green',margin:20}}>
+    <View style={{justifyContent:'center',alignItems:'center',height:380,margin:20}}>
       <View style={{flexDirection:'row',height:130}} >
     <View>
       <Text variant="massive">{Math.round(temp_c)}</Text>
